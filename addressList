@@ -1,0 +1,20 @@
+[
+  {
+    "postalCode": "49097-310",
+    "thoroughfare": "Rua Hipólito da Costa",
+    "neighborhood": "Ponto Novo",
+    "city": "Aracaju",
+    "state": "Sergipe",
+    "region": "Nordeste",
+    "areaCode": "79"
+  },
+  {
+    "postalCode": "49040-020",
+    "thoroughfare": "Avenida Adélia Franco",
+    "neighborhood": "Inácio Barbosa",
+    "city": "Aracaju",
+    "state": "Sergipe",
+    "region": "Nordeste",
+    "areaCode": "79"
+  }
+]

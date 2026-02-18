@@ -7,19 +7,30 @@ public class Menu {
                    WELCOME TO POSTAL CODE SEARCH!   
                 ====================================
                   (press any key to view the menu)
-                  """);
+                """);
     }
     public static void showMenu() {
-        System.out.println("""
+        System.out.print("""
                 
                 ##########################
                      CHOOSE A OPTION:
                 --------------------------
                  1 - Query a postal code
                  2 - Update Json file
-                 3 - Exit program
+                 0 - Exit program
                 --------------------------
                 => """);
+    }
+
+    public static void showInvalidUserInputMessage() {
+        System.out.println("""
+                ==================================
+                           INVALID INPUT
+                ----------------------------------
+                  The postal code must contain 8
+                  digits!
+                ==================================
+                 (press any key to view the menu)""");
     }
 
     public static void showQuestionPostalCode() {
@@ -33,7 +44,13 @@ public class Menu {
                  => """);
     }
 
-    public static void showSearchMessage() {
+    public static void showSearchLoadingMessage() {
+        System.out.println("""
+                Searching postal code...
+                """);
+    }
+
+    public static void showSearchFinishMessage() {
         System.out.println("""
                 
                 ====================
@@ -55,7 +72,8 @@ public class Menu {
                  State: %s
                  Region: %s
                  Area Code: %s%n
-                **************************************************""",
+                **************************************************
+                         (press any key to view the menu)""",
                 address.getPostalCode(),
                 address.getThoroughfare(),
                 address.getNeighborhood(),
@@ -63,6 +81,15 @@ public class Menu {
                 address.getState(),
                 address.getRegion(),
                 address.getAreaCode());
+    }
+
+    public static void showSavedMessage(String fileName) {
+        System.out.printf("""
+                ======================================
+                  Your postal code list was updated,
+                  check in file"%s".
+                ======================================
+                   (press any key to view the menu)%n""", fileName);
     }
 
     public static void showExitMessage() {
