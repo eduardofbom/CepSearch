@@ -1,5 +1,9 @@
 package com.eduardofbom.model;
 
+import com.eduardofbom.exception.PostalCodeNotFoundException;
+
+import java.nio.file.ProviderNotFoundException;
+
 public class Address {
     private String postalCode;
     private String thoroughfare;
@@ -16,6 +20,9 @@ public class Address {
                    String state,
                    String region,
                    String areaCode) {
+        if (postalCode.equals("null")) {
+            throw new PostalCodeNotFoundException("Postal code not found.");
+        }
         this.postalCode = postalCode;
         this.thoroughfare = thoroughfare;
         this.neighborhood = neighborhood;

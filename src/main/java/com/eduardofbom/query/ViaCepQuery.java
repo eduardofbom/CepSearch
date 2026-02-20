@@ -2,6 +2,7 @@ package com.eduardofbom.query;
 
 import com.eduardofbom.model.Address;
 import com.eduardofbom.model.AddressViaCep;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -15,8 +16,8 @@ public class ViaCepQuery {
     private String postalCode;
 
     public ViaCepQuery(String postalCode) {
-        if (postalCode == null || postalCode.length() != 8) {
-            throw new IllegalArgumentException("The postal code must contain 8 digits.");
+        if (postalCode == null || (postalCode.length() != 8 && postalCode.length() != 10)) {
+            throw new IllegalArgumentException("The postal code must contain 8 numbers.");
         }
         this.postalCode = postalCode;
     }
@@ -36,6 +37,7 @@ public class ViaCepQuery {
             String jsonQuery = response.body();
 
             Gson gson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                     .setPrettyPrinting()
                     .create();
             AddressViaCep addressViaCep = gson.fromJson(jsonQuery, AddressViaCep.class);

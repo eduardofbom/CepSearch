@@ -1,8 +1,9 @@
 package com.eduardofbom.model;
 
 public class Menu {
-    public static void showWelcomeMessage() {
+    public static void showMessageWelcome() {
         System.out.println("""
+                
                 ====================================
                    WELCOME TO POSTAL CODE SEARCH!   
                 ====================================
@@ -22,8 +23,20 @@ public class Menu {
                 => """);
     }
 
-    public static void showInvalidUserInputMessage() {
+    public static void showMessageInvalidOption(String userOption) {
+        System.out.printf("""
+                
+                ==================================
+                          INVALID OPTION
+                ----------------------------------
+                   The %s option doesn't exist!
+                ==================================
+                 (press any key to view the menu)%n""", userOption);
+    }
+
+    public static void showMessageInvalidPostalCodeFormat() {
         System.out.println("""
+                
                 ==================================
                            INVALID INPUT
                 ----------------------------------
@@ -44,13 +57,14 @@ public class Menu {
                  => """);
     }
 
-    public static void showSearchLoadingMessage() {
+    public static void showMessageSearchLoading() {
         System.out.println("""
+                
                 Searching postal code...
                 """);
     }
 
-    public static void showSearchFinishMessage() {
+    public static void showMessageSearchFinish() {
         System.out.println("""
                 
                 ====================
@@ -85,6 +99,7 @@ public class Menu {
 
     public static void showSavedMessage(String fileName) {
         System.out.printf("""
+                
                 ======================================
                   Your postal code list was updated,
                   check in file"%s".

@@ -1,5 +1,6 @@
 package com.eduardofbom;
 
+import com.eduardofbom.exception.PostalCodeNotFoundException;
 import com.eduardofbom.model.Address;
 import com.eduardofbom.model.Menu;
 import com.eduardofbom.query.ViaCepQuery;
@@ -21,11 +22,12 @@ public class Main {
         List<Address> addressList = new ArrayList<>();
         String fileName = "addressList";
 
-        Menu.showWelcomeMessage();
+        Menu.showMessageWelcome();
         scanner.nextLine();
         while (true) {
             Menu.showMenu();
             Integer userOption = scanner.nextInt();
+            Integer integerUseroption = Integer.valueOf(userOption);
 
             switch (userOption) {
                 case 0:
@@ -36,16 +38,24 @@ public class Main {
                     String userPostalCode = scanner.nextLine();
                     Matcher matcher = pattern.matcher(userPostalCode);
                     if (matcher.matches()) {
-                        ViaCepQuery viaCepQuery = new ViaCepQuery(matcher.group());
-                        Menu.showSearchLoadingMessage();
-                        Address address = viaCepQuery.query();
-                        Menu.showSearchFinishMessage();
-                        addressList.add(address);
-                        Menu.showAddressDescription(address);
-                        scanner.nextLine();
+                        try {
+                            String postalCode = matcher.group().replace(".", "").replace("-","");
+                            ViaCepQuery viaCepQuery = new ViaCepQuery(postalCode);
+                            Menu.showMessageSearchLoading();
+                            Address address = viaCepQuery.query();
+                            Menu.showMessageSearchFinish();
+                            addressList.add(address);
+                            Menu.showAddressDescription(address);
+                        } catch (IllegalArgumentException e) {
+                            Menu.showMessageInvalidPostalCodeFormat();
+                        } catch (PostalCodeNotFoundException e) {
+                            e.printStackTrace();
+// criar um método estático na classe Menu com uma mensagem informando para o usuário que o cep que ele inseriu não foi achado
+                        }
                     } else {
-//
+                        Menu.showMessageInvalidOption(userPostalCode);
                     }
+                    scanner.nextLine();
                     break;
                 case 2:
                     JsonSaver jsonSaver = new JsonSaver(fileName);
