@@ -23,7 +23,7 @@ public class Menu {
                 => """);
     }
 
-    public static void showMessageInvalidOption(String userOption) {
+    public static void showMessageInvalidOption(int userOption) {
         System.out.printf("""
                 
                 ==================================
@@ -38,7 +38,7 @@ public class Menu {
         System.out.println("""
                 
                 ==================================
-                           INVALID INPUT
+                          INVALID INPUT
                 ----------------------------------
                   The postal code must contain 8
                   digits!
@@ -115,5 +115,17 @@ public class Menu {
                   code search tool!
                                         Bye bye!
                 ==================================""");
+    }
+
+    public static void showMessagePostalCodeNotFound(String userOption) {
+        System.out.printf("""
+                
+                ==================================
+                            NOT FOUND
+                ----------------------------------
+                   The postal code %s
+                   was not found!
+                ==================================
+                 (press any key to view the menu)%n""", userOption);
     }
 }

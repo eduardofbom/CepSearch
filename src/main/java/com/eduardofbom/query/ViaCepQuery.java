@@ -27,11 +27,12 @@ public class ViaCepQuery {
     }
 
     public Address query() {
-        String uriAddres = "https://viacep.com.br/ws/" + postalCode + "/json/";
+        String uriAddress = "https://viacep.com.br/ws/" + postalCode + "/json/";
+        System.out.println(uriAddress);
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(uriAddres))
+                    .uri(URI.create(uriAddress))
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             String jsonQuery = response.body();

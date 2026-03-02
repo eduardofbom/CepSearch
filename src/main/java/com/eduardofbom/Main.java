@@ -49,11 +49,10 @@ public class Main {
                         } catch (IllegalArgumentException e) {
                             Menu.showMessageInvalidPostalCodeFormat();
                         } catch (PostalCodeNotFoundException e) {
-                            e.printStackTrace();
-// criar um método estático na classe Menu com uma mensagem informando para o usuário que o cep que ele inseriu não foi achado
+                            Menu.showMessagePostalCodeNotFound(userPostalCode);
                         }
                     } else {
-                        Menu.showMessageInvalidOption(userPostalCode);
+
                     }
                     scanner.nextLine();
                     break;
@@ -65,7 +64,7 @@ public class Main {
                     scanner.nextLine();
                     break;
                 default:
-
+                    Menu.showMessageInvalidOption(integerUseroption);
                     break;
             }
             if(userOption == 0) {
